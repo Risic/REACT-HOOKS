@@ -29,8 +29,25 @@ body::-webkit-scrollbar-thumb {
   gap: 10px;
 }
 
-#search {
+.searchSection {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 350px;
+  gap: 10px;
+}
+
+#searchInput {
   padding: 5px 10px;
+}
+
+.genderCheck label {
+  font-size: 12px;
+}
+
+.genderCheck input {
+  width: 18px;
+  height: 18px;
 }
 
 .contact {

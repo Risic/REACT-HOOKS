@@ -11,7 +11,8 @@ const contactsInit = [{
 }, {
     firstName: "Анонімний",
     lastName: "Анонімус",
-    phone: "+380666666666"
+    phone: "+380666666666",
+    gender: "anon"
 }, {
     firstName: "Лілія",
     lastName: "Олдровна",

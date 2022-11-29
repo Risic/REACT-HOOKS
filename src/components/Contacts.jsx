@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import contactsInit from "./initContacts";
 import Contact from "./Contact";
+import GenderCheck from "./GenderCheck";
 
 const Contacts = () => {
     const [contacts, setContacts] = useState(contactsInit);
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState("");
+    const [gender, setGender] = useState ({
+        male: true,
+        female: true,
+        anon: true
+    })
 
     const inputHandlerSearch = (e) => {
         e.preventDefault()
@@ -13,21 +19,25 @@ const Contacts = () => {
 
     useEffect(() => {
         if (search === "") {
-            setContacts(contactsInit)
+            setContacts(contactsInit.filter(contact => (gender[contact.gender])));
         }
-        setContacts(contactsInit.filter((contact) => (
-            contact.firstName.toLowerCase().includes(search.toLowerCase()) || 
+        setContacts(contactsInit.filter((contact) => 
+        (
+            (contact.firstName.toLowerCase().includes(search.toLowerCase()) || 
             contact.lastName.toLowerCase().includes(search.toLowerCase()) ||
-            contact.phone.includes(search)
+            contact.phone.includes(search)) && 
+            gender[contact.gender]
         )))
-    }, [search])
+    }, [search, gender])
 
     return (
         <div className="contacts"> 
-        <input type="text" name="search" id="search" placeholder="Search" maxLength={100}
-            onChange={inputHandlerSearch}
-            value={search}
-        />
+            <div className="searchSection">
+                <input type="text" name="search" id="searchInput" placeholder="Search" maxLength={100}
+                    onChange={inputHandlerSearch}
+                    value={search}/>
+                <GenderCheck gender={gender} setGender={setGender}/>
+            </div>
         {
             contacts.map((contact, index) => {
                 return (
