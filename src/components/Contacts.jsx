@@ -19,7 +19,7 @@ const Contacts = () => {
 
     useEffect(() => {
         if (search === "") {
-            setContacts(contactsInit.filter(contact => (gender[contact.gender])));
+            setContacts(contactsInit.filter(contact => (setGender[contact.gender])));
         }
         setContacts(contactsInit.filter((contact) => 
         (
